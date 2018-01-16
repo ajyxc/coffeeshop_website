@@ -1,0 +1,63 @@
+//purchase
+SELECT account.name ,  purchasedItemCounts.cnt/purchasesCounts.cnt as average
+FROM
+(SELECT customerId, COUNT(productId) as cnt
+FROM purchase, purchaseItem
+WHERE purchase.purchaseId = purchaseItem.purchaseId
+AND companyId = $1::integer
+GROUP BY customerId) purchasedItemCounts,
+(SELECT customerId, Count(*) as cnt
+FROM purchase
+WHERE companyId =$2::integer
+GROUP BY  customerId) purchasesCounts,
+account
+WHERE  purchasedItemCounts.customerId = purchasesCounts.customerId
+AND account.accountId = purchasedItemCounts.customerId
+
+
+SELECT avgTable.name, avgTable.average FROM
+(SELECT account.name ,  purchasedItemCounts.cnt/purchasesCounts.cnt as average
+FROM
+(SELECT customerId, COUNT(productId) as cnt
+FROM purchase, purchaseItem
+WHERE purchase.purchaseId = purchaseItem.purchaseId
+AND companyId = $1::integer
+GROUP BY customerId) purchasedItemCounts,
+(SELECT customerId, Count(*) as cnt
+FROM purchase
+WHERE companyId = $2::integer
+GROUP BY  customerId) purchasesCounts,
+account
+WHERE  purchasedItemCounts.customerId = purchasesCounts.customerId
+AND account.accountId = purchasedItemCounts.customerId) avgTable
+ORDER BY avgTable.average DESC
+LIMIT 1;
+
+
+SELECT a.name, a.email
+    FROM Purchase p, Account a, PurchaseItem pi
+    WHERE p.companyId = $1::integer AND a.accountId = p.customerId AND pi.purchaseId = p.purchaseId
+    GROUP BY a.accountId
+    HAVING COUNT(DISTINCT pi.productId) = (SELECT COUNT(*)
+    FROM Product
+    WHERE companyId = $2::integer)
+
+
+//product
+SELECT MAX(price) FROM ${this._tableName} ${whereClause}
+SELECT MIN(price) FROM ${this._tableName} ${whereClause}
+
+//employee
+SELECT * FROM Account a, Employee e ${whereClause}
+SELECT * FROM Company c, Employee e ${whereClause}
+
+//customer
+SELECT * FROM Account a, Customer e ${whereClause}
+SELECT * FROM Company c, Customer e ${whereClause}
+
+//purchaseitem
+SELECT * FROM Product p, PurchaseItem pi ${whereClause}
+
+
+These are not all of our queries. Some of them are dynamically generated. Look at the code in some of the backend modules (e.g purchase , create function)
+Note that all of the query generation code has been written by us, there are no third party libraries involved.

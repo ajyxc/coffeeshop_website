@@ -1,0 +1,10 @@
+.git
+.gitignore
+.node_history
+README.md
+docker-compose.yml
+node_modules
+*.log
+*.out
+*~
+*#

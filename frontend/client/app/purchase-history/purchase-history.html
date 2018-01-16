@@ -1,0 +1,115 @@
+<section class="container-fluid with-maxwidth chapter">
+  <md-card class="no-margin-h">
+    <md-toolbar class="md-table-toolbar md-default">
+      <div class="md-toolbar-tools">
+        <span>Purchase History</span>
+        <div flex></div>
+        <md-button class="md-icon-button" ng-click="getPurchases()">
+          <md-icon>refresh</md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-table-container>
+      <table md-table md-row-select ng-model="selectedPurchases" ng-change="getPurchaseItems()">
+        <thead md-head>
+          <tr md-row>
+            <th md-column>
+              <span>Purchase ID</span>
+            </th>
+            <th md-column>
+              <span>Date</span>
+            </th>
+            <th md-column></th>
+          </tr>
+        </thead>
+        <tbody md-body>
+          <tr md-row md-select="purchase.purchaseid" md-select-id="purchaseid" ng-repeat="purchase in purchases track by purchase.purchaseid">
+            <td md-cell>{{purchase.purchaseid}}</td>
+            <td md-cell>{{purchase.timestamp}}</td>
+            <td md-cell>
+              <md-icon ng-click="deletePurchase(purchase.purchaseid)">delete</md-icon>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </md-table-container>
+  </md-card>
+
+  <md-card class="no-margin-h">
+    <md-toolbar class="md-table-toolbar md-default">
+      <div class="md-toolbar-tools">
+        <span>Purchase Items</span>
+        <div flex></div>
+        <md-button class="md-icon-button" ng-click="getPurchaseItems()">
+          <md-icon>refresh</md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-table-container>
+      <table md-table>
+        <thead md-head>
+          <tr md-row>
+            <th md-column>
+              <span>Name</span>
+            </th>
+            <th md-column>
+              <span>Description</span>
+            </th>
+            <th md-column>
+              <span>Calories</span>
+            </th>
+            <th md-column>
+              <span>Volume</span>
+            </th>
+            <th md-column>
+              <span>Weight</span>
+            </th>
+            <th md-column>
+              <span>Points Spent</span>
+            </th>
+            <th md-column>
+              <span>Unit Cost</span>
+            </th>
+            <th md-column>
+              <span>Quantity</span>
+            </th>
+            <th md-column>
+              <span>Total Cost</span>
+            </th>
+            <th md-column></th>
+          </tr>
+        </thead>
+        <tbody md-body>
+          <tr md-row ng-repeat="purchaseItem in purchaseItems track by $index">
+            <td md-cell>{{purchaseItem.name}}</td>
+            <td md-cell>{{purchaseItem.description}}</td>
+            <td md-cell>{{purchaseItem.calories}}</td>
+            <td md-cell>{{purchaseItem.volume}}</td>
+            <td md-cell>{{purchaseItem.weight}}</td>
+            <td md-cell>{{purchaseItem.pointscost}}</td>
+            <td md-cell>{{purchaseItem.unitprice}}</td>
+            <td md-cell>{{purchaseItem.quantity}}</td>
+            <td md-cell>{{purchaseItem.totalprice}}</td>
+            <td md-cell>
+              <md-icon ng-click="deletePurchaseItem(purchaseItem.purchaseid, purchaseItem.productid)">delete</md-icon>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </md-table-container>
+  </md-card>
+
+  <md-card class="no-margin-h">
+    <div class="box-body">
+      <md-input-container class="md-block" flex-gt-sm>
+        <label>Company</label>
+        <md-select ng-model="companyId" ng-change="getProducts()">
+          <md-option ng-repeat="company in companies" value="{{company.companyid}}">
+            {{company.name}}
+          </md-option>
+        </md-select>
+      </md-input-container>
+    </div>
+  </md-card>
+</section>

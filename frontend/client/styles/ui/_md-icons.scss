@@ -1,0 +1,15 @@
+.material-icons {
+  font-size: 24px;
+
+  &.mdi-sm {
+    font-size: 16px;
+  }
+}
+//
+.theme-dark,
+.theme-gray {
+  md-icon,
+  md-icon.md-default-theme {
+    color: $theme_dark_text_color;
+  }
+}

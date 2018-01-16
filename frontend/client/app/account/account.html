@@ -1,0 +1,39 @@
+<section class="container-fluid with-maxwidth chapter">
+  <article class="article">
+    <h2 class="article-title">Account</h2>
+    <div class="box box-default">
+      <div class="box-body">
+
+        <form name="form_account" class="form-validation" novalidate>
+          <md-input-container class="md-block">
+            <label>Name</label>
+            <input name="name" type="text" required ng-model="account.name">
+            <div ng-messages="form_account.name.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">You must supply a name.</div>
+            </div>
+          </md-input-container>
+
+          <md-input-container class="md-block">
+            <label>Email</label>
+            <input name="email" type="email" required ng-model="account.email">
+            <div ng-messages="form_account.email.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">You must supply an email address.</div>
+              <div ng-message="email" class="my-message">That doesn't look like a valid email.</div>
+            </div>
+          </md-input-container>
+
+          <md-button class="md-raised btn-w-md md-accent" ng-disabled="!canSubmit()" ng-click="submitUpdate()">Submit</md-button>
+          <md-button class="md-raised btn-w-md" ng-disabled="!canRevert()" ng-click="revert()">Revert</md-button>
+          <br>
+          <div class="callout callout-success no-margin-bottom" ng-show="updateSuccess">
+            Changes Saved!
+          </div>
+          <div class="callout callout-danger no-margin-bottom" ng-show="updateError">
+            {{updateError.data}}
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </article>
+</section>

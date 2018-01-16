@@ -1,0 +1,28 @@
+
+// global variables
+@import 'global/var';
+@import 'global/var-extra';
+@import 'material-design-lite/variables';
+@import 'theme/var-theme';
+
+@import 'libs/angular-material';
+@import 'libs/angular-material-data-table';
+@import 'libs/angular-wizard';
+@import 'libs/text-angular';
+
+// Pages
+@import 'page/demo';
+@import 'page/auth';
+@import 'page/error';
+@import 'page/lock-screen';
+@import 'page/profile';
+@import 'page/invoice';
+@import 'page/dashboard';
+@import 'page/maintenance';
+@import 'page/about';
+@import 'page/terms';
+@import 'page/blog';
+@import 'page/with-tabs';
+
+@import 'app/tasks';
+@import 'app/email';

@@ -1,0 +1,17 @@
+.theme-dark,
+.theme-gray {
+  .nav-tabs > li > a:hover {
+    border-color: $nav-tabs-border-color $nav-tabs-border-color transparent;
+  }
+
+  .nav > li > a:focus,
+  .nav > li > a:hover {
+    background-color: rgba(#000, .03);
+  }
+
+  .nav-tabs > li.active > a,
+  .nav-tabs > li.active > a:focus,
+  .nav-tabs > li.active > a:hover {
+    color: $theme_dark_text_color;
+  }
+}

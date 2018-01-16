@@ -1,0 +1,7 @@
+
+we removed the store entity.
+We did a marketing survey and determined that our customers would not receive
+added value from our platform by adding mulitiple store functionality.
+This allow us to reduce the number of joins in common querie and offer a
+simplier more intuitive UI.
+

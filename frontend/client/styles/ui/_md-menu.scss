@@ -1,0 +1,22 @@
+// 
+
+.theme-dark,
+.theme-gray {
+  md-menu-content {
+    .md-button {
+      color: $theme_dark_text_color;
+    }
+  }
+}
+
+.theme-gray {
+  md-menu-content {
+    background-color: $theme_gray_box_bg;
+  }
+}
+
+.theme-dark {
+  md-menu-content {
+    background-color: $theme_dark_box_bg;
+  }
+}
